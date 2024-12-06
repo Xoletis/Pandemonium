@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b941a04d8d641cb4cbce1a45eba4c320, type: 3}
+  m_Name: Sniper
+  m_EditorClassIdentifier: 
+  Nom: Sniper Laser
+  image: {fileID: 21300000, guid: 9aa85fd549453d9489e9f22253d482db, type: 3}
+  maxStack: 1
+  objet: {fileID: 8468182601969280160, guid: 35952845b770b8149a89ef486a2ec758, type: 3}
+  rarity: 1
+  isCraftable: 1
+  craftMethod: 0
+  materials:
+  - item: {fileID: 11400000, guid: 1b536d0de66f4294a89a051dc5e05f52, type: 2}
+    count: 2
+  - item: {fileID: 11400000, guid: b83a62869d7234841bfa10c8c620e1b0, type: 2}
+    count: 5
+  - item: {fileID: 11400000, guid: 1938c10ecc7616e4685e97db5f5cb862, type: 2}
+    count: 3
+  - item: {fileID: 11400000, guid: 52b034f7413f24c48b40bf4be5f85364, type: 2}
+    count: 4
+  - item: {fileID: 11400000, guid: 093462cd8083c0a4e99d723614bc58da, type: 2}
+    count: 10
+  timeToCraft: 3
+  craftQuantity: 1
+  damage: 100
+  isRangeWeapon: 1
+  range: 100
+  ammo: {fileID: 11400000, guid: 8d314f79280024047a222a0366a44967, type: 2}
+  magazineSize: 1
+  type: 0
+  asBulletSpread: 1
+  BulletSpreadVariance: {x: 0.005, y: 0.005, z: 0.005}
+  ImpactParticuleSystem: {fileID: 9154229115824779020, guid: a5e1e2c4d2cd81f4abed6272a2b8187a,
+    type: 3}
+  ShootDelay: 0.05
+  BulletTrail: {fileID: 970708822353212817, guid: 346c92c7ca86a20449c2d8b68eac737a,
+    type: 3}
+  forceMagnitude: 500
+  isAutomaticWeapon: 1
+  bulletSpeed: 100

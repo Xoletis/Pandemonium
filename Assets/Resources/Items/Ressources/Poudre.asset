@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e89270cb5e713e458204fb4aa96903c, type: 3}
+  m_Name: Poudre
+  m_EditorClassIdentifier: 
+  Nom: "Poudre \xE0 Canon"
+  image: {fileID: 21300000, guid: d008022ab4381af47b7864ee7e757da9, type: 3}
+  maxStack: 100
+  objet: {fileID: 0}
+  rarity: 0
+  isCraftable: 1
+  craftMethod: 0
+  materials:
+  - item: {fileID: 11400000, guid: fac8bf80f6f82864caba71f324700ea8, type: 2}
+    count: 5
+  - item: {fileID: 11400000, guid: 0e06fba7dfe3ab54787f9aaab3ee4e17, type: 2}
+    count: 5
+  - item: {fileID: 11400000, guid: 3207c9f8c947af34a874e23c0fd29de2, type: 2}
+    count: 5
+  timeToCraft: 5
+  craftQuantity: 10

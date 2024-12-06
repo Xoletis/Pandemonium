@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b941a04d8d641cb4cbce1a45eba4c320, type: 3}
+  m_Name: Pickaxe
+  m_EditorClassIdentifier: 
+  Nom: Pioche simple
+  image: {fileID: 21300000, guid: c730a226ed5445b4b8b2a43dc53ac55f, type: 3}
+  maxStack: 1
+  objet: {fileID: 770939341546003451, guid: d0c41891d6f657445aebe9079ac2af4d, type: 3}
+  rarity: 0
+  isCraftable: 0
+  craftMethod: 0
+  materials: []
+  timeToCraft: 0
+  damage: 2
+  isRangeWeapon: 0
+  range: 0
+  ammo: {fileID: 0}
+  magazineSize: 0
+  type: 4
+  asBulletSpread: 1
+  BulletSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
+  ImpactParticuleSystem: {fileID: 0}
+  ShootDelay: 0.5
+  BulletTrail: {fileID: 0}
+  forceMagnitude: 500
+  isAutomaticWeapon: 0
+  bulletSpeed: 100

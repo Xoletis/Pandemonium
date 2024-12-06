@@ -1,0 +1,232 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4565425285326400585
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6279912267950099841}
+  - component: {fileID: 991237344966452680}
+  m_Layer: 0
+  m_Name: InventoryManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6279912267950099841
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4565425285326400585}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.0584335, y: -2.7171178, z: 4.9992557}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &991237344966452680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4565425285326400585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48332ff00daddc84eaf74d37d31dedbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InventoryObject: {fileID: 0}
+  ItemCase: {fileID: 5734714597660636096, guid: 1ab63b61b570f224c9ba3274dbcfff76,
+    type: 3}
+  Panel: {fileID: 0}
+  PlayerHand: {fileID: 0}
+  ItemDescription: {fileID: 0}
+  AmmoPanel: {fileID: 0}
+  ItemFieldHistory: {fileID: 0}
+  ItemFieldPrefab: {fileID: 4546871238822428568, guid: eb08e1a6c3b449548ae2691f80775828,
+    type: 3}
+  player: {fileID: 0}
+  slotSprites:
+  - {fileID: 21300000, guid: 0f3e7cab79620354bb5963e1291a39a6, type: 3}
+  - {fileID: 21300000, guid: 8db045bfcfd3cc74a9d0087fb7e49a19, type: 3}
+  - {fileID: 21300000, guid: 685e94ef57f81204ca5e833d7c14216a, type: 3}
+  slotImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  weaponInstance: {fileID: 0}
+  Pickaxe: {fileID: 11400000, guid: b1477dbfc04213e47bfa059edd2addd0, type: 2}
+  axe: {fileID: 11400000, guid: b58fe1f622aefba41a2913b1cbb11b6b, type: 2}
+  heavyWeapon:
+    Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  mediumWeapon:
+    Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  lightWeapon:
+    Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  SlotUse: 0
+  sangNb: {fileID: 0}
+  sang: {fileID: 11400000, guid: 093462cd8083c0a4e99d723614bc58da, type: 2}
+  slots:
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 11400000, guid: bfcb82f03be03c04eb9852f37dbff9b7, type: 2}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 200
+      itemType: {fileID: 11400000, guid: 8d314f79280024047a222a0366a44967, type: 2}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 100
+      itemType: {fileID: 11400000, guid: 83473fa1605837d4d9b830c81bb45ef4, type: 2}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 11400000, guid: d575cd5a240c69e499a7e92d823b68c9, type: 2}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 11400000, guid: 0252a887e48ccfb43a325bb8dfe5291e, type: 2}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  - Slot: {fileID: 0}
+    itemEntry:
+      number: 1
+      itemType: {fileID: 0}
+  attack: {fileID: 0}

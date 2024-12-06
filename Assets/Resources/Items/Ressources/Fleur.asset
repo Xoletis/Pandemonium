@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e89270cb5e713e458204fb4aa96903c, type: 3}
+  m_Name: Fleur
+  m_EditorClassIdentifier: 
+  Nom: Fleur
+  image: {fileID: 21300000, guid: abd45ae6f7c236b49a6aeea6bb7b49a1, type: 3}
+  maxStack: 100
+  objet: {fileID: 0}
+  rarity: 0
+  isCraftable: 0
+  craftMethod: 0
+  materials: []
+  timeToCraft: 0
+  craftQuantity: 1
