@@ -11,6 +11,8 @@ public class PlayerAttack : MonoBehaviour
     [HideInInspector] public bool canAttack = true; // Booléen qui vérifie si le joueur peut attaquer
     public Collider attackZone; // Zone de détection de l'attaque (environ un collider)
 
+    PlayerStats playerStats;
+
     InputForPlayer _playerInput; // Référence à l'objet qui gère les entrées du joueur
 
     float initiatialFOV; // Stocke le FOV initial pour la caméra
@@ -39,6 +41,7 @@ public class PlayerAttack : MonoBehaviour
         controller = GetComponent<ThirdPersonController>(); // Récupère la référence du contrôleur du joueur
         InventoryManager.instance.attack = this; // Associe ce script à l'instance de gestion d'inventaire
         initiatialFOV = cam.m_Lens.FieldOfView; // Sauvegarde le FOV initial de la caméra
+        playerStats = GetComponent<PlayerStats>();
     }
 
     // Méthodes pour activer/désactiver les entrées du joueur
@@ -186,7 +189,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (other.CompareTag("Damagable"))
         {
-            other.GetComponent<RatsStats>().UpdateHealth(-1 * weapon.damage, other.ClosestPoint(transform.position), weapon.forceMagnitude);
+            other.GetComponent<RatsStats>().UpdateHealth(-1 * (weapon.damage + playerStats.Puissance), other.ClosestPoint(transform.position), weapon.forceMagnitude);
         }
     }
 

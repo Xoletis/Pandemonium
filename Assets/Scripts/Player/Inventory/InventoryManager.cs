@@ -30,6 +30,8 @@ public class InventoryManager : MonoBehaviour
     // Système d'entrées pour gérer l'inventaire et les armes
     private InputForPlayer _playerInput;
 
+    public PlayerStats playerStats;
+
     // Objets spécifiques (ex. pioche, hache)
     public Item Pickaxe, axe;
 
@@ -46,7 +48,7 @@ public class InventoryManager : MonoBehaviour
     bool canScroll = true;
 
     // Texte pour afficher le nombre d'objets (ex. nombre de "sang")
-    public TextMeshProUGUI sangNb;
+    public TextMeshProUGUI sangNb, puissance, nivP, nivD, nivN, nivS;
     public Item sang; // Référence à l'objet "sang"
 
     // Liste des slots d'inventaire
@@ -387,6 +389,12 @@ public class InventoryManager : MonoBehaviour
 
         // Met à jour le texte qui affiche la quantité d'un item spécifique ('sang')
         sangNb.text = GetNbItemInInventory(sang) + ""; // On convertit la quantité en texte
+        puissance.text = playerStats.Puissance + "";
+        nivD.text = DiviniteManager.Instance.levelList[0].level + "";
+        nivS.text = DiviniteManager.Instance.levelList[3].level + "";
+        nivN.text = DiviniteManager.Instance.levelList[1].level + "";
+        nivP.text = DiviniteManager.Instance.levelList[2].level + "";
+
 
         // Restaure l'objet de l'arme lourde dans le slot correspondant
         heavyWeapon.Slot.item = heavyWeapon.itemEntry;

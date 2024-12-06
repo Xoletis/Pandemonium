@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("#Pandemonium/IA/Rats Stats")]
@@ -57,6 +58,28 @@ public class RatsStats : MonoBehaviour
         {
             // Créer un cadavre du rat à la position actuelle
             Instantiate(RatCadavre, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+
+            int n = Random.Range(0, 7);
+
+            if(n == 1)
+            {
+                List<GameObject> effet = new List<GameObject>();
+                foreach (DiviniteLevel lvl in DiviniteManager.Instance.levelList)
+                {
+                    if (lvl.level >= lvl.divinite.levels.Count)
+                    {
+                        effet.Add(lvl.divinite.LastLevelPower);
+                    }
+                }
+
+                if (effet.Count != 0)
+                {
+                    int a = Random.Range(0, effet.Count);
+                    Instantiate(effet[a], transform.position, Quaternion.identity);
+                }
+            }
+            
+
             // Détruire l'objet rat (le faire disparaître du jeu)
             Destroy(gameObject);
         }

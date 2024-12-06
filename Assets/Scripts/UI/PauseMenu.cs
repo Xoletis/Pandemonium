@@ -8,7 +8,7 @@ public class PauseMenu : MonoBehaviour
     // Références aux objets du menu de pause et autres éléments UI
     public GameObject PauseGO; // Le GameObject contenant l'UI de pause
     public ThirdPersonController controller; // Le contrôleur du personnage
-    public GameObject inventory, craft, victory, defete; // Références aux menus d'inventaire, craft, victoire et défaite
+    public GameObject inventory, craft, victory, defete, rune; // Références aux menus d'inventaire, craft, rune, victoire et défaite
 
     // Référence à l'objet d'entrée pour le joueur (gère la saisie des commandes)
     private InputForPlayer _playerInput;
@@ -66,7 +66,7 @@ public class PauseMenu : MonoBehaviour
     public void Pause()
     {
         // Empêche de mettre en pause si un autre menu comme l'inventaire ou le menu de victoire/échec est ouvert
-        if (craft.activeSelf || inventory.activeSelf || victory.activeSelf || defete.activeSelf) return;
+        if (craft.activeSelf || inventory.activeSelf || victory.activeSelf || defete.activeSelf || rune.activeSelf) return;
 
         if (isPause) // Si le jeu est déjà en pause, on le reprend
         {

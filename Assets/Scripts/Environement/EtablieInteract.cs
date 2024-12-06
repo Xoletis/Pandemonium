@@ -32,7 +32,7 @@ public class EtablieInteract : MonoBehaviour
     {
         if (interactable)  // Si l'objet est interactif (le joueur est à proximité).
         {
-            ui.Initialize();  // Initialise l'interface de l'établi pour permettre l'interaction (par exemple, ouvrir un menu).
+            ui.Initialize();
         }
     }
 

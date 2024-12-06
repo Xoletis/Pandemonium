@@ -1,70 +1,119 @@
+using JetBrains.Annotations;
 using UnityEngine;
+using System.Collections;
 using UnityEngine.UI;
 
 [AddComponentMenu("#Pandemonium/Player/Control/PlayerStats")]
 public class PlayerStats : MonoBehaviour
 {
-    // Instance statique pour accéder aux PlayerStats depuis d'autres scripts
+    // Instance statique pour accï¿½der aux PlayerStats depuis d'autres scripts
     public static PlayerStats instance;
 
-    // La santé actuelle du joueur
+    // La santï¿½ actuelle du joueur
     [HideInInspector] public int health;
 
-    // La santé maximale du joueur
+    public ParticleSystem apparition;  // Systï¿½me de particules pour l'apparition
+
+
+    // La santï¿½ maximale du joueur
     public int maxHealth = 100;
 
     // Tableau de sliders qui affichent la barre de vie
     public Slider[] Slides;
 
-    // Méthode d'initialisation appelée au démarrage
+    public int Puissance = 0;
+    public float Strategie = 0;
+    public int Protection = 0;
+
+    public bool invulnerable = false;
+    public bool invisible = false;
+
+    // Mï¿½thode d'initialisation appelï¿½e au dï¿½marrage
     private void Awake()
     {
-        // Vérifie s'il y a déjà une instance existante de PlayerStats
+        // Vï¿½rifie s'il y a dï¿½jï¿½ une instance existante de PlayerStats
         if (instance != null)
         {
             Debug.LogError("Il y a plusieurs PlayerStats dans la scene");
         }
 
-        // Assigne cette instance à la variable statique pour un accès global
+        // Assigne cette instance ï¿½ la variable statique pour un accï¿½s global
         instance = this;
     }
 
-    // Méthode Start appelée après Awake() pour initialiser la santé et les barres
+    // Mï¿½thode Start appelï¿½e aprï¿½s Awake() pour initialiser la santï¿½ et les barres
     void Start()
     {
-        health = maxHealth; // Initialise la santé à la valeur maximale
+        health = maxHealth; // Initialise la santï¿½ ï¿½ la valeur maximale
 
-        // Initialise chaque Slider pour qu'il reflète la santé du joueur
+        // Initialise chaque Slider pour qu'il reflï¿½te la santï¿½ du joueur
         foreach (var s in Slides)
         {
             s.minValue = 0; // La valeur minimale de la barre est 0
-            s.maxValue = PlayerStats.instance.maxHealth; // La valeur maximale est la santé maximale du joueur
-            s.value = PlayerStats.instance.health; // Définit la barre de vie initiale selon la santé actuelle
+            s.maxValue = PlayerStats.instance.maxHealth; // La valeur maximale est la santï¿½ maximale du joueur
+            s.value = PlayerStats.instance.health; // Dï¿½finit la barre de vie initiale selon la santï¿½ actuelle
+        }
+
+        Puissance = 0;
+
+        if (apparition != null)
+        {
+            Instantiate(apparition, transform.position, Quaternion.identity);
         }
     }
 
-    // Méthode pour appliquer des dégâts au joueur
+    // Mï¿½thode pour appliquer des dï¿½gï¿½ts au joueur
     public void Damage(int damage)
     {
-        health -= damage; // Réduit la santé du joueur en fonction des dégâts reçus
+        if (invulnerable)
+        {
+            return;
+        }
 
-        UpdateBars(); // Met à jour les barres de vie après les dégâts
+        int realDammages = damage - Protection / 100;
 
-        // Si la santé du joueur est inférieure ou égale à zéro, le joueur est défait
+        health -= damage; // RÃ©duit la santÃ© du joueur en fonction des dï¿½gï¿½ts reï¿½us
+        UpdateBars(); // Met Ã  jour les barres de vie aprÃ¨s les dï¿½gï¿½ts
+
+        // Si la santï¿½ du joueur est infï¿½rieure ou ï¿½gale ï¿½ zï¿½ro, le joueur est dï¿½fait
         if (health <= 0)
         {
-            GameManager.instance.Defete(); // Appelle la méthode pour gérer la défaite du joueur
-            Destroy(gameObject); // Détruit l'objet du joueur
+            GameManager.instance.Defete(); // Appelle la mï¿½thode pour gï¿½rer la dï¿½faite du joueur
+            Destroy(gameObject); // Dï¿½truit l'objet du joueur
         }
     }
 
-    // Méthode pour mettre à jour les barres de vie affichées
+    // Mï¿½thode pour mettre ï¿½ jour les barres de vie affichï¿½es
     public void UpdateBars()
     {
-        // Met à jour la valeur de chaque barre de vie
+        // Met ï¿½ jour la valeur de chaque barre de vie
         foreach (var s in Slides)
         {
             s.value = PlayerStats.instance.health;
         }
+    }
+
+    public IEnumerator protectionRoutine()
+    {
+        invulnerable = true;
+        yield return new WaitForSeconds(5);
+        invulnerable = false;
+    }
+
+    public void protectionPU()
+    {
+        StartCoroutine(protectionRoutine());
+    }
+
+    public IEnumerator strategieRoutine()
+    {
+        invisible = true;
+        yield return new WaitForSeconds(5);
+        invisible = false;
+    }
+
+    public void strategienPU()
+    {
+        StartCoroutine(strategieRoutine());
     }
 }

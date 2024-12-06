@@ -188,7 +188,7 @@ public class Etablie : MonoBehaviour
     {
         canQuit = false; // Empêche de quitter l'UI pendant la fabrication
         progressBar.gameObject.SetActive(true); // Affiche la barre de progression
-        float second = CraftManager.Instance.crafts[selected].item.timeToCraft; // Durée de la fabrication
+        float second = CraftManager.Instance.crafts[selected].item.timeToCraft - PlayerStats.instance.Strategie; // Durée de la fabrication
         progressBar.maxValue = second;
         progressBar.minValue = 0;
         float i = 0;

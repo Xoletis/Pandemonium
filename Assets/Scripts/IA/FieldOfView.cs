@@ -55,6 +55,11 @@ public class FieldOfView : MonoBehaviour
     // Fonction qui effectue la vérification du champ de vision
     private void FieldOfViewCheck()
     {
+        if(PlayerStats.instance.invisible)
+        {
+            canSeePlayer = false;
+            return;
+        }
         // Vérification de la présence de cibles dans le rayon de détection
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
 

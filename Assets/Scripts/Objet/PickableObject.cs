@@ -7,8 +7,18 @@ public class PickableObject : MonoBehaviour
     // L'élément principal que l'objet représente dans l'inventaire
     public ItemEntry item;
 
+    public bool desawn = false;
+
     // Liste des ressources supplémentaires que cet objet peut donner aléatoirement
     public List<MoreRessources> ressources;
+
+    private void Start()
+    {
+        if (desawn)
+        {
+            Destroy(gameObject, 5);
+        }
+    }
 
     // Méthode appelée lors de l'interaction avec l'objet
     void Interact()

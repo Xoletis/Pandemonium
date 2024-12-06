@@ -124,6 +124,7 @@ MonoBehaviour:
   item:
     number: 3
     itemType: {fileID: 11400000, guid: 093462cd8083c0a4e99d723614bc58da, type: 2}
+  desawn: 1
   ressources:
   - item: {fileID: 11400000, guid: 20a6eab67b99f2c41b73cfec380384ed, type: 2}
     percentage: 50
