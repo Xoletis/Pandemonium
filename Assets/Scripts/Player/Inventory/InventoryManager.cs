@@ -586,6 +586,12 @@ public class InventoryManager : MonoBehaviour
             default: break;
         }
 
+        // Mettre à jour l'affichage des munitions
+        ShowAmmoPanel();
+
+
+        if (!InventoryObject.activeSelf) return;
+
         // Mettre à jour les icônes des slots d'armes pour refléter les armes équipées
         if (heavyWeapon.Slot.item.itemType == null)
         {
@@ -613,9 +619,6 @@ public class InventoryManager : MonoBehaviour
         {
             slotImages[2].sprite = null; // Si une arme légère est équipée, ne pas afficher l'icône vide
         }
-
-        // Mettre à jour l'affichage des munitions
-        ShowAmmoPanel();
     }
 
     // Actualise l'interface utilisateur des munitions en appelant la méthode Refresh() du panneau des munitions

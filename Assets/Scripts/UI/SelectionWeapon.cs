@@ -128,6 +128,10 @@ public class SelectionWeapon : MonoBehaviour
     {
         if (!Active) return;
         GetCurrentMenuEllement();  // Appelle la méthode pour déterminer l'élément sélectionné
+        if (Input.GetMouseButton(0))
+        {
+            Desactivate();
+        }
     }
 
     // Détecte l'élément du menu sélectionné en fonction de la position de la souris

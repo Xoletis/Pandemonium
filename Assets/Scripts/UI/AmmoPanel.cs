@@ -28,11 +28,14 @@ public class AmmoPanel : MonoBehaviour
             default: slot = null; break;
         }
 
-        // Si le slot est nul (aucune arme équipée), on quitte la fonction.
-        if (slot == null) return;
+        if (slot.itemEntry.itemType == null) return;
 
         // Récupère l'arme du slot et l'utilise pour récupérer les informations sur les munitions.
         WeaponItem item = slot.itemEntry.itemType as WeaponItem;
+
+        // Si le slot est nul (aucune arme équipée), on quitte la fonction.
+        if (item == null) return;
+        if (!item.isRangeWeapon) return;
 
         // Met à jour l'image de type de munitions.
         ammoType.sprite = item.ammo.image;

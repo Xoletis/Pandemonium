@@ -175,6 +175,7 @@ public class Etablie : MonoBehaviour
     // Fonction de fabrication de l'objet
     public void Craft()
     {
+        Debug.Log("craft");
         List<CraftMaterial> mats = CraftManager.Instance.crafts[selected].item.materials;
         foreach (CraftMaterial mat in mats)
         {
@@ -193,7 +194,7 @@ public class Etablie : MonoBehaviour
         progressBar.minValue = 0;
         float i = 0;
         progressBar.value = i;
-        Craftbtn.enabled = false; // Désactive le bouton pendant la fabrication
+        Craftbtn.interactable = false; // Désactive le bouton pendant la fabrication
 
         while (i < second)
         {
@@ -201,7 +202,7 @@ public class Etablie : MonoBehaviour
             i += 0.01f;
             progressBar.value = i; // Mise à jour de la barre de progression
         }
-
+        Craftbtn.interactable = true;
         SetRessource(); // Met à jour les ressources après la fabrication
         canQuit = true; // Permet de quitter l'interface après la fabrication
         progressBar.gameObject.SetActive(false); // Masque la barre de progression

@@ -17,7 +17,10 @@ MonoBehaviour:
   maxStack: 100
   objet: {fileID: 0}
   rarity: 0
-  isCraftable: 0
+  isCraftable: 1
   craftMethod: 0
-  materials: []
-  timeToCraft: 0
+  materials:
+  - item: {fileID: 11400000, guid: 52b034f7413f24c48b40bf4be5f85364, type: 2}
+    count: 1
+  timeToCraft: 0.5
+  craftQuantity: 2
