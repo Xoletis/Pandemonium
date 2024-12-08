@@ -122,50 +122,47 @@ public class InventoryManager : MonoBehaviour
             {
                 Destroy(Object.gameObject); // Détruire l'objet récupéré
             }
-            return;
         }
-
-        // Créer une entrée dans l'interface pour l'objet
-        GameObject field = Instantiate(ItemFieldPrefab, ItemFieldHistory.transform);
-        field.GetComponent<ItemField>().Create(item.itemType, item.number);
-
-        // Essayer d'empiler l'objet dans les slots existants
-        for (int i = 0; i < slots.Count; i++)
+        else
         {
-            if (item.number <= 0) break; // Si aucun objet restant, arrêter
+            // Créer une entrée dans l'interface pour l'objet
+            GameObject field = Instantiate(ItemFieldPrefab, ItemFieldHistory.transform);
+            field.GetComponent<ItemField>().Create(item.itemType, item.number);
 
-            // Empiler dans un slot existant de même type
-            if (slots[i].itemEntry.itemType == item.itemType)
+            // Essayer d'empiler l'objet dans les slots existants
+            for (int i = 0; i < slots.Count; i++)
             {
-                int availableSpace = item.itemType.maxStack - slots[i].itemEntry.number;
-                if (item.number > availableSpace)
+                if (item.number <= 0) break; // Si aucun objet restant, arrêter
+
+                // Empiler dans un slot existant de même type
+                if (slots[i].itemEntry.itemType == item.itemType)
                 {
-                    item.number -= availableSpace;
-                    slots[i].itemEntry.number = item.itemType.maxStack;
-                    AddItemInSlot(slots[i].itemEntry, i);
+                    int availableSpace = item.itemType.maxStack - slots[i].itemEntry.number;
+                    if (item.number > availableSpace)
+                    {
+                        item.number -= availableSpace;
+                        slots[i].itemEntry.number = item.itemType.maxStack;
+                        AddItemInSlot(slots[i].itemEntry, i);
+                    }
+                    else
+                    {
+                        slots[i].itemEntry.number += item.number;
+                        AddItemInSlot(slots[i].itemEntry, i);
+                        item.number = 0;
+                    }
                 }
-                else
+            }
+
+            // Si l'objet ne peut pas être empilé, créer un nouveau slot
+            if (item.number > 0)
+            {
+                if (AddItemInNewSlot(item) && Object != null)
                 {
-                    slots[i].itemEntry.number += item.number;
-                    AddItemInSlot(slots[i].itemEntry, i);
-                    item.number = 0;
+                    Destroy(Object.gameObject);
+                    setGrab(false);
                 }
             }
         }
-
-        // Si l'objet ne peut pas être empilé, créer un nouveau slot
-        if (item.number > 0)
-        {
-            if (AddItemInNewSlot(item) && Object != null)
-            {
-                Destroy(Object.gameObject);
-                setGrab(false);
-            }
-        }
-
-        // Actualiser l'UI et les munitions
-        ActualiseInventory();
-        RefreshUIAmmo();
     }
 
     // Méthode pour ajouter un objet à l'inventaire avec une quantité spécifiée

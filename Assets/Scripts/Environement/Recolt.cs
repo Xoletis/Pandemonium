@@ -31,10 +31,13 @@ public class Recolt : MonoBehaviour
                     count = 0;  // Met à zéro la quantité restante à récolter.
                 }
 
+                Debug.Log(ressources.Count);
+
                 // Cette boucle ajoute des ressources supplémentaires avec une probabilité spécifique.
                 foreach (MoreRessources r in ressources)
                 {
                     int n = Random.Range(0, 100);  // Génère un nombre aléatoire entre 0 et 100.
+                    Debug.Log(n);
                     if (n >= r.percentage)
                     {  // Si ce nombre est plus grand que la probabilité de la ressource.
                         InventoryManager.instance.AddItem(r.item, r.quantity);  // Ajoute l'objet et la quantité à l'inventaire.
