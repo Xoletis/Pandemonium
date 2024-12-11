@@ -7,8 +7,8 @@ using UnityEngine;
 [RequireComponent(typeof(FieldOfView))]
 public class RatsIA : MonoBehaviour
 {
-    // Enumération des états possibles du comportement de l'IA (errance ou attaque)
-    public enum FlockingState { Errance, Attack }
+    // Enumération des états possibles du comportement de l'IA
+    public enum FlockingState { Errance, Attack, Flee }
     public FlockingState currentState = FlockingState.Errance;
 
     [Header("Commun")]
@@ -24,6 +24,10 @@ public class RatsIA : MonoBehaviour
     public float attackCallRadius = 10f;  // Rayon de détection pour l'attaque
     public float attackSpeed = 6f;  // Vitesse de déplacement en mode attaque
 
+    [Header("Fuite")]
+    public float fleeSpeed = 7f;  // Vitesse de déplacement en fuite
+    public float fleeDistance = 15f;  // Distance maximale pour choisir une position de fuite
+
     public float separationWeight = 1.5f;  // Poids de la séparation dans le flocking
     public float alignmentWeight = 1.0f;  // Poids de l'alignement dans le flocking
     public float cohesionWeight = 1.0f;  // Poids de la cohésion dans le flocking
@@ -32,18 +36,16 @@ public class RatsIA : MonoBehaviour
     private List<RatsIA> neighbors;  // Liste des voisins proches
     private NavMeshAgent agent;  // Référence au composant NavMeshAgent
     private Vector3 wanderTarget;  // Cible pour l'errance
+    private Vector3 fleeTarget;  // Cible pour la fuite
     [SerializeField]
     private Transform attackTarget;  // Cible pour l'attaque
     private RatsStats stats;  // Référence aux statistiques du rat (pour les attaques)
     private float wanderCooldown = 2f;  // Temps d'attente avant de choisir une nouvelle cible d'errance
     private float wanderTimer;  // Timer pour l'errance
 
-    private float inactivityThreshold = 1f;  // Seuil d'inactivité avant de retourner en errance
-    private float inactivityTimer = 0f;  // Timer d'inactivité
+    private FieldOfView fov;  // Référence au composant FieldOfView pour la détection du joueur
 
     public bool ShowDebugWire = true;  // Affichage des gizmos de débogage dans l'éditeur
-
-    private FieldOfView fov;  // Référence au composant FieldOfView pour la détection du joueur
 
     void Start()
     {
@@ -73,10 +75,17 @@ public class RatsIA : MonoBehaviour
             case FlockingState.Attack:
                 AttackPlayer();  // Comportement en attaque
                 break;
+
+            case FlockingState.Flee:
+                Flee();  // Comportement en fuite
+                break;
         }
 
         // Change d'état en fonction de la détection du joueur
-        currentState = fov.canSeePlayer ? FlockingState.Attack : FlockingState.Errance;
+        if (currentState != FlockingState.Flee)
+        {
+            currentState = fov.canSeePlayer ? FlockingState.Attack : FlockingState.Errance;
+        }
     }
 
     void Wander()
@@ -112,10 +121,6 @@ public class RatsIA : MonoBehaviour
         {
             agent.SetDestination(finalDestination);
         }
-        else
-        {
-            inactivityTimer = 0f; // Réinitialiser le timer d'inactivité dès qu'il se déplace
-        }
     }
 
     void AttackPlayer()
@@ -129,6 +134,28 @@ public class RatsIA : MonoBehaviour
         {
             stats.Attack();  // Appeler la méthode d'attaque des statistiques
         }
+    }
+
+    void Flee()
+    {
+        agent.speed = fleeSpeed;
+
+        // Si la destination de fuite est atteinte, repasser en errance
+        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+        {
+            currentState = FlockingState.Errance;
+            wanderTarget = GetRandomPositionOnNavMeshSurface();
+            agent.SetDestination(wanderTarget);
+            return;
+        }
+    }
+
+    public void TriggerFlee()
+    {
+        // Déclencher la fuite et choisir un point éloigné
+        currentState = FlockingState.Flee;
+        fleeTarget = GetFleePosition();
+        agent.SetDestination(fleeTarget);
     }
 
     private void FindNeighbors()
@@ -246,7 +273,24 @@ public class RatsIA : MonoBehaviour
         }
     }
 
-    // Affichage des Gizmos dans l'éditeur pour la détection de débogage
+    private Vector3 GetFleePosition()
+    {
+        // Générer une position de fuite aléatoire éloignée
+        Vector3 randomDirection = Random.insideUnitSphere * fleeDistance;
+        randomDirection += transform.position;
+
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(randomDirection, out hit, fleeDistance, NavMesh.AllAreas))
+        {
+            return hit.position;
+        }
+        else
+        {
+            Debug.LogWarning("Aucune position de fuite valide trouvée.");
+            return transform.position; // Retourner la position actuelle si aucune position valide
+        }
+    }
+
     private void OnDrawGizmos()
     {
         if (ShowDebugWire)
@@ -255,6 +299,8 @@ public class RatsIA : MonoBehaviour
             Gizmos.DrawWireSphere(transform.position, wanderRadius);
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, attackCallRadius);
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, fleeDistance);
         }
     }
 }

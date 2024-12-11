@@ -4,59 +4,64 @@ using UnityEngine;
 [AddComponentMenu("#Pandemonium/IA/Rats Stats")]
 public class RatsStats : MonoBehaviour
 {
-    public int health;  // Santé du rat
-    public int damage = 5;  // Dégâts infligés par le rat
-    public float attackPerSecond = 1;  // Fréquence d'attaque par seconde
+    public int health;  // Santï¿½ du rat
+    public int damage = 5;  // Dï¿½gï¿½ts infligï¿½s par le rat
+    public float attackPerSecond = 1;  // Frï¿½quence d'attaque par seconde
 
     private AudioSource BruitCaillouLac;  // Source audio pour les bruits du rat
-    public AudioClip BruitCaillou;  // Clip audio pour le bruit du rat lorsqu'il subit des dégâts
-    public Item sang, peau;  // Références aux objets "sang" et "peau" que le rat peut laisser tomber
-    public GameObject RatCadavre;  // Préfabriqué du cadavre du rat
+    public AudioClip BruitCaillou;  // Clip audio pour le bruit du rat lorsqu'il subit des dï¿½gï¿½ts
+    public Item sang, peau;  // Rï¿½fï¿½rences aux objets "sang" et "peau" que le rat peut laisser tomber
+    public GameObject RatCadavre;  // Prï¿½fabriquï¿½ du cadavre du rat
 
-    private Rigidbody rb;  // Référence au Rigidbody du rat
+    private Rigidbody rb;  // Rï¿½fï¿½rence au Rigidbody du rat
 
-    private float countdown;  // Timer pour gérer la fréquence d'attaque
-    private float timer;  // Timer pour incrémenter le temps écoulé
+    private float countdown;  // Timer pour gï¿½rer la frï¿½quence d'attaque
+    private float timer;  // Timer pour incrï¿½menter le temps ï¿½coulï¿½
 
     void Start()
     {
         // Initialisation des variables
-        BruitCaillouLac = GetComponent<AudioSource>();  // Récupérer la source audio
-        rb = GetComponent<Rigidbody>();  // Récupérer le Rigidbody du rat
+        BruitCaillouLac = GetComponent<AudioSource>();  // Rï¿½cupï¿½rer la source audio
+        rb = GetComponent<Rigidbody>();  // Rï¿½cupï¿½rer le Rigidbody du rat
 
-        // Calculer le timer d'attaque en fonction de la fréquence d'attaque
+        // Calculer le timer d'attaque en fonction de la frï¿½quence d'attaque
         countdown = 1f / attackPerSecond;
         timer = 0f;
     }
 
     void Update()
     {
-        // Incrémenter le timer avec le temps écoulé depuis la dernière frame
+        // Incrï¿½menter le timer avec le temps ï¿½coulï¿½ depuis la derniï¿½re frame
         timer += Time.deltaTime;
     }
 
-    // Méthode pour mettre à jour la santé du rat
+    // Mï¿½thode pour mettre ï¿½ jour la santï¿½ du rat
     public void UpdateHealth(int amount, Vector3 contact, float forceMagnitude)
     {
-        // Calculer la direction opposée à partir du contact (appliquer une force dans la direction opposée à l'impact)
+        // Calculer la direction opposï¿½e ï¿½ partir du contact (appliquer une force dans la direction opposï¿½e ï¿½ l'impact)
         Vector3 directionOpposee = transform.position - contact;
         directionOpposee = directionOpposee.normalized;
-        directionOpposee.y += 0.5f;  // Ajouter une petite élévation sur l'axe Y pour simuler un rebond
+        directionOpposee.y += 0.5f;  // Ajouter une petite ï¿½lï¿½vation sur l'axe Y pour simuler un rebond
         directionOpposee = directionOpposee.normalized;  // Normaliser la direction
 
         // Appliquer la force au Rigidbody
         rb.AddForce(directionOpposee * forceMagnitude);
 
-        // Mettre à jour la santé du rat
+        // Mettre ï¿½ jour la santï¿½ du rat
         health += amount;
 
-        // Jouer un son de bruit lorsque le rat subit des dégâts
+        // Jouer un son de bruit lorsque le rat subit des dï¿½gï¿½ts
         BruitCaillouLac.PlayOneShot(BruitCaillou);
 
-        // Vérifier si la santé du rat est inférieure ou égale à zéro, ce qui signifie qu'il est mort
+        if (health <= 30f)
+        {
+            GetComponent<RatsIA>().TriggerFlee();
+        }
+
+        // Vï¿½rifier si la santï¿½ du rat est infï¿½rieure ou ï¿½gale ï¿½ zï¿½ro, ce qui signifie qu'il est mort
         if (health <= 0)
         {
-            // Créer un cadavre du rat à la position actuelle
+            // Crï¿½er un cadavre du rat ï¿½ la position actuelle
             Instantiate(RatCadavre, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
 
             int n = Random.Range(0, 7);
@@ -80,20 +85,20 @@ public class RatsStats : MonoBehaviour
             }
             
 
-            // Détruire l'objet rat (le faire disparaître du jeu)
+            // Dï¿½truire l'objet rat (le faire disparaï¿½tre du jeu)
             Destroy(gameObject);
         }
     }
 
-    // Méthode pour gérer l'attaque du rat
+    // Mï¿½thode pour gï¿½rer l'attaque du rat
     public void Attack()
     {
-        // Si le timer a dépassé le délai entre les attaques (c'est-à-dire que c'est le moment d'attaquer)
+        // Si le timer a dï¿½passï¿½ le dï¿½lai entre les attaques (c'est-ï¿½-dire que c'est le moment d'attaquer)
         if (timer >= countdown)
         {
-            // Infliger des dégâts au joueur
+            // Infliger des dï¿½gï¿½ts au joueur
             PlayerStats.instance.Damage(damage);
-            // Réinitialiser le timer en soustrayant la durée du délai d'attaque
+            // Rï¿½initialiser le timer en soustrayant la durï¿½e du dï¿½lai d'attaque
             timer -= countdown;
         }
     }

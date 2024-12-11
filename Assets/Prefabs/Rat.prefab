@@ -905,6 +905,8 @@ MonoBehaviour:
   wanderRadius: 10
   attackCallRadius: 10
   attackSpeed: 6
+  fleeSpeed: 15
+  fleeDistance: 100
   separationWeight: 2
   alignmentWeight: 1
   cohesionWeight: 1
