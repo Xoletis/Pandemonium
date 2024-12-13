@@ -1,4 +1,0 @@
-repository "PandemoniumRat@spotedcarrot@cloud"
-  path "/"
-    br "/main"
-    co "/main"
