@@ -62,6 +62,9 @@ public class RuneUI : MonoBehaviour
 
     public void Initialize(Divinite divin)
     {
+        sangSlider.interactable = true;
+        prierBTN.interactable = true;
+
         foreach (GameObject lvlObject in lvlObject)
         {
             Destroy(lvlObject);
