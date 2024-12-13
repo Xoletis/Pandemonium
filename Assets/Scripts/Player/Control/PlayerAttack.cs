@@ -207,15 +207,3 @@ public class PlayerAttack : MonoBehaviour
         controller.CanMove = true; // Permet au joueur de se déplacer à nouveau après l'attaque
     }
 }
-
-// Classe proxy pour gérer l'interaction des déclencheurs de la zone d'attaque
-public class ChildTriggerProxy : MonoBehaviour
-{
-    public PlayerAttack ParentHandler { get; set; } // Référence au gestionnaire d'attaque du joueur
-
-    private void OnTriggerEnter(Collider other)
-    {
-        // Lorsque la zone d'attaque entre en collision avec un objet, appelle la méthode de gestion
-        ParentHandler?.HandleChildTriggerEnter(other);
-    }
-}

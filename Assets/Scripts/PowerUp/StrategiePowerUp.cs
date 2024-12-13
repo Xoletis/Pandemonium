@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[AddComponentMenu("#Pandemonium/PowerUp/StrategiePowerUp")]
 public class StrategiePowerUp : MonoBehaviour
 {
     public ParticleSystem strategie;

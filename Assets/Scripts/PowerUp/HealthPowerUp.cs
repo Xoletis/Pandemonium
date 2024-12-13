@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class healthPowerUp : MonoBehaviour
+[AddComponentMenu("#Pandemonium/PowerUp/HealthPowerUp")]
+public class HealthPowerUp : MonoBehaviour
 {
     public ParticleSystem health;
 

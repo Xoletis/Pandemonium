@@ -757,17 +757,4 @@ public class InventoryManager : MonoBehaviour
 
 }
 
-[System.Serializable]
-public class ItemEntry
-{
-    public int number = 1;
-    public Item itemType;
-}
-
-[System.Serializable]
-public class Slots
-{
-    public InventorySlot Slot;
-    public ItemEntry itemEntry;
-}
 

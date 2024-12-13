@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[AddComponentMenu("#Pandemonium/PowerUp/ProtectionPowerUp")]
 public class ProtectionPowerUp : MonoBehaviour
 {
     public ParticleSystem protection;

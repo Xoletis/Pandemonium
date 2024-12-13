@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[AddComponentMenu("#Pandemonium/PowerUp/DestructionPowerUp")]
 public class DestructionPowerUp : MonoBehaviour
 {
     public ParticleSystem destruction;
