@@ -38,6 +38,11 @@ public class PickableObject : MonoBehaviour
                 InventoryManager.instance.AddItem(r.item, r.quantity);
             }
         }
+
+        if (item.number <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Méthode appelée lorsque l'objet est détruit (par exemple lorsqu'il est ramassé)
